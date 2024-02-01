@@ -2,6 +2,7 @@ package edu.iu.c322.test1.repository;
 
 import edu.iu.c322.test1.model.Question;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class FileRepository {
     private String IMAGES_FOLDER_PATH = "quizzes/questions/images/";
     private static final String NEW_LINE = System.lineSeparator();
@@ -26,6 +27,7 @@ public class FileRepository {
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND);
     }
+
 
     public boolean add(Question question) throws IOException {
         Path path = Paths.get(QUESTION_DATABASE_NAME);

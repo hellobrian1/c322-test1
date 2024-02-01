@@ -1,6 +1,9 @@
 package edu.iu.c322.test1.model;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
+
 
 public class Question {
 
@@ -16,15 +19,19 @@ public class Question {
     private String answer;
     private String[] choices;
 
+
     public String toLine() {
         String choicesAsString = String.join(",", getChoices());
+        String answer = getAnswer();
+        String trimmedAnswer = (answer != null) ? answer.trim() : "";
         String line = String.format("%1s,%2s,%3s,%4s",
                 getId(),
                 getDescription().trim(),
-                getAnswer().trim(),
+                trimmedAnswer,
                 choicesAsString.trim());
         return line;
     }
+
 
     public static Question fromLine(String line) {
       String[] tokens = line.split(",");
